@@ -38,8 +38,11 @@
     if (st === 'unknown') return '공고문 확인';
     return G.fmtShort(n.apply_end) + '(' + G.weekday(n.apply_end) + ')' + (n.apply_end_time ? ' ' + n.apply_end_time : '') + '까지';
   }
+  var pickedSector = '';
   function mainSector(n) {
-    var s = (n.sectors || []).filter(function (x) { return x !== '전 분야'; });
+    var all = n.sectors || [];
+    var s = all.filter(function (x) { return x !== '전 분야'; });
+    if (pickedSector && s.indexOf(pickedSector) < 0 && all.indexOf('전 분야') > -1) return '전 분야';
     return s.length ? s[0] : '전 분야';
   }
   function regionText(n) {
@@ -141,6 +144,7 @@
   function mount(o) {
     var state = { s: '', w: '' };
     function draw(anim) {
+      pickedSector = state.s;
       var rows = list(state);
       if (o.max) rows = rows.slice(0, o.max);
       o.board.innerHTML = rows.length ? rows.map(function (n) { return rowHTML(n, anim && !reduce); }).join('') : '<p class="empty">접수 중인 공고 중에는 ‘' + G.esc(state.w || state.s) + '’에 맞는 것이 없습니다. <a href="https://www.gwtp.or.kr/gwtp/bbsNew_list.php?code=sub01b&keyvalue=sub01" target="_blank" rel="noopener">지난 공고까지 보기</a></p>';
