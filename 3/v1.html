@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>강원테크노파크</title>
+<link rel="icon" href="../shared/img/favicon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="flap.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:"Pretendard Variable",Pretendard,sans-serif;color:#111827;background:#fff;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.hd{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 60px}
+.hd img{height:34px;display:block}
+.menu a{font-size:17px;font-weight:600;text-decoration:none;margin-left:40px}
+.hero{background:#002049;color:#fff;min-height:calc(100vh - 72px);padding:44px 60px 40px}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+h1{font-size:52px;font-weight:700;letter-spacing:-.02em;margin:0;line-height:1.2}
+.meta{font-size:17px;color:rgba(255,255,255,.78);text-align:right;line-height:1.6}
+.chips{display:flex;gap:8px;margin:30px 0 22px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border:1px solid rgba(255,255,255,.38);border-radius:22px;background:transparent;color:#fff;font:inherit;font-size:16px;cursor:pointer}
+.chip .ic{width:20px;height:20px}
+.chip b{font-weight:600;color:rgba(255,255,255,.72)}
+.chip.on{background:#fff;color:#002049;border-color:#fff}
+.chip.on b{color:#002049}
+.thead,.row{display:grid;grid-template-columns:150px minmax(0,1fr) 250px 210px;column-gap:24px;align-items:center}
+.thead{font-size:15px;color:rgba(255,255,255,.66);padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.3)}
+.thead span:last-child,.r-end{text-align:right}
+.row{min-height:80px;border-bottom:1px solid rgba(255,255,255,.14);text-decoration:none;color:#fff}
+.flap{--fh:48px;--fw:36px;--fs:30px}
+.unit{font-size:17px;margin-left:8px;color:rgba(255,255,255,.8)}
+.r-short{display:block;font-size:20px;font-weight:600}
+.r-title{display:block;font-size:16px;color:rgba(255,255,255,.7);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.r-sec{display:flex;align-items:center;gap:10px;font-size:16px}
+.r-sec em{display:block;font-style:normal;font-size:15px;color:rgba(255,255,255,.68)}
+.r-end{font-size:17px;font-variant-numeric:tabular-nums}
+.empty{font-size:17px;padding:30px 0}
+@media (max-width:720px){
+ .hd{height:56px;padding:0 20px}.hd img{height:26px}.menu{display:none}
+ .hero{padding:24px 20px 32px}
+ .top{display:block}h1{font-size:30px}.meta{text-align:left;font-size:15px;margin-top:8px}
+ .chips{flex-wrap:nowrap;overflow-x:auto;margin:20px -20px 14px;padding:0 20px}
+ .chip{flex:none}
+ .thead{display:none}
+ .row{grid-template-columns:76px minmax(0,1fr);grid-template-areas:"l m" "l s" "l e";row-gap:4px;padding:14px 0}
+ .r-left{grid-area:l;align-self:start}.r-main{grid-area:m}.r-sec{grid-area:s;font-size:15px}.r-end{grid-area:e;text-align:left;font-size:15px}
+ .flap{--fh:40px;--fw:28px;--fs:24px}.unit{display:none}
+ .r-short{font-size:17px}.r-title{font-size:15px}
+}
+</style>
+</head>
+<body>
+<header class="hd">
+ <a href="https://www.gwtp.or.kr/gwtp/index.php"><img src="../shared/img/logo-navy.png" alt="강원테크노파크"></a>
+ <nav class="menu"><a href="https://www.gwtp.or.kr/gwtp/bbsNew_list.php?code=sub01a&keyvalue=sub01">공고안내</a><a href="https://www.gwtp.or.kr/gwtp/pageview.php?url=sub02a&keyvalue=sub02">사업안내</a><a href="https://www.gwtp.or.kr/gwtp/pageview.php?url=sub04a&keyvalue=sub04">입주안내</a><a href="https://www.gwtp.or.kr/gwtp/bbsNew_list.php?code=sub05a&keyvalue=sub05">경영공시</a><a href="https://www.gwtp.or.kr/gwtp/bbsNew_list.php?code=sub06a&keyvalue=sub06">TP NOW</a><a href="https://www.gwtp.or.kr/gwtp/pageview.php?url=sub07a&keyvalue=sub07">TP소개</a></nav>
+</header>
+<main class="hero">
+ <div class="top">
+  <h1>지금 신청할 수 있는 지원사업</h1>
+  <p class="meta" id="meta"></p>
+ </div>
+ <div class="chips" id="chips"></div>
+ <div class="thead" aria-hidden="true"><span>남은 날</span><span>지원 내용</span><span>분야</span><span>마감</span></div>
+ <div id="board"></div>
+</main>
+<script src="../shared/base.js"></script>
+<script src="../shared/notices.js"></script>
+<script src="../shared/gw-core.js"></script>
+<script src="icons.js"></script>
+<script src="board-core.js"></script>
+<script>
+(function(){
+ var c=GB.counts(),t=GW.today;
+ document.getElementById('meta').innerHTML=(t.getMonth()+1)+'월 '+t.getDate()+'일 기준<br>접수 중 '+c.open+'건, 상시 '+c.always+'건, 공고문 확인 '+c.unknown+'건';
+ GB.mount({board:document.getElementById('board'),chips:document.getElementById('chips'),still:true});
+})();
+</script>
+</body>
+</html>

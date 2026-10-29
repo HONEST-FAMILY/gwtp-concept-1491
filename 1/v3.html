@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>강원테크노파크</title>
+<link rel="icon" href="../shared/img/favicon.png">
+<style>
+@font-face{font-family:'LINESeedKR';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'LINESeedKR';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');font-weight:700;font-display:swap}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'LINESeedKR',sans-serif;color:#111827;background:#fff;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1440px;margin:0 auto;padding:0 60px}
+header{position:absolute;inset:0 0 auto 0;z-index:5;color:#fff}
+header .wrap{display:flex;align-items:center;height:96px;gap:48px}
+header img{height:36px}
+nav{display:flex;gap:44px;margin-left:auto;font-size:18px;font-weight:700}
+.photo{position:relative;height:60vh;min-height:430px;overflow:hidden;background:#1b2635}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.cap{position:absolute;right:60px;bottom:24px;color:#fff;font-size:15px;line-height:1.5;text-align:right}
+.lower .wrap{display:grid;grid-template-columns:1.25fr 1fr;gap:64px;padding-top:44px;padding-bottom:40px}
+h1{font-size:clamp(36px,4.6vw,68px);line-height:1.2;color:#002049;font-weight:700;letter-spacing:-0.02em}
+.lead{margin-top:18px;font-size:19px;line-height:1.55;color:#374151}
+.lead b{color:#c8102e}
+.side h2{font-size:17px;color:#111827;padding-bottom:12px;border-bottom:2px solid #002049}
+.list{display:flex;flex-direction:column}
+.nt{display:grid;grid-template-columns:76px 1fr;grid-template-rows:auto auto;column-gap:16px;row-gap:2px;padding:14px 0;border-bottom:1px solid #e5e7eb;font-size:16px;line-height:1.45}
+.nt-d{grid-row:1/3;font-weight:700;color:#002049;font-size:18px}
+.nt-d.urgent{color:#c8102e}
+.nt-t{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nt-m{color:#4b5563;font-size:15px}
+@media (max-width:900px){
+  .wrap{padding:0 20px}
+  nav{display:none}
+  header .wrap{height:64px}
+  header img{height:26px}
+  .photo{height:46svh;min-height:300px}
+  .cap{right:20px;bottom:14px;font-size:14px}
+  .lower .wrap{grid-template-columns:1fr;gap:28px;padding-top:28px}
+  h1{font-size:34px}
+  .lead{font-size:16px}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap"><img src="../shared/img/logo-white.png" alt="강원테크노파크"><nav><a href="#">공고안내</a><a href="#">사업안내</a><a href="#">입주안내</a><a href="#">경영공시</a><a href="#">TP NOW</a><a href="#">TP소개</a></nav></div></header>
+<section class="photo">
+  <img src="assets/g2-gangneung.jpg" alt="강릉 시가지 너머 동해">
+  <div class="cap">강릉, 동해 쪽</div>
+</section>
+<section class="lower"><div class="wrap">
+  <div><h1>강원의 잠재력을 깨워,<br>세계로</h1><p class="lead">춘천에서 삼척까지 6개 시군, 시설 15곳.<br>그 중심에 강원테크노파크가 있습니다.</p></div>
+  <div class="side"><h2>지금 접수 중인 공고</h2><div class="list" data-notices="3"></div></div>
+</div></section>
+<script src="../shared/base.js"></script><script src="../shared/notices.js"></script><script src="../shared/gw-core.js"></script><script src="strip.js"></script>
+</body>
+</html>
