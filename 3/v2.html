@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>강원테크노파크</title>
+<link rel="icon" href="../shared/img/favicon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="flap.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:"Pretendard Variable",Pretendard,sans-serif;color:#111827;background:#fff;-webkit-font-smoothing:antialiased;word-break:keep-all}
+a{color:inherit}
+.hd{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;border-bottom:1px solid #E5E7EB}
+.hd img{height:34px;display:block}
+.menu a{font-size:17px;font-weight:600;text-decoration:none;margin-left:40px}
+.wrap{display:grid;grid-template-columns:500px minmax(0,1fr);min-height:calc(100vh - 72px)}
+.side{background:#F2F4F6;padding:52px 48px 40px 60px;display:flex;flex-direction:column}
+.date{font-size:16px;color:#4B5563;margin:0 0 14px}
+h1{font-size:54px;font-weight:700;letter-spacing:-.02em;margin:0;line-height:1.18;color:#002049}
+.count{font-size:18px;line-height:1.6;margin:22px 0 0;color:#1F2937}
+.count b{color:#002049}
+form{margin:30px 0 0;display:flex}
+form input{flex:1;height:56px;border:1.5px solid #002049;border-right:0;border-radius:8px 0 0 8px;padding:0 18px;font:inherit;font-size:17px;background:#fff;color:#111827;min-width:0}
+form button{height:56px;padding:0 22px;border:0;border-radius:0 8px 8px 0;background:#002049;color:#fff;font:inherit;font-size:17px;font-weight:600}
+.quick{margin-top:auto;padding-top:36px;display:grid;gap:4px}
+.quick a{display:flex;align-items:center;gap:14px;text-decoration:none;font-size:17px;padding:12px 0}
+.quick .ic{width:26px;height:26px;color:#002049}
+.quick b{margin-left:auto;font-variant-numeric:tabular-nums}
+.board{background:#002049;color:#fff;padding:36px 48px 40px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
+.chip{display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 14px;border:1px solid rgba(255,255,255,.36);border-radius:21px;background:transparent;color:#fff;font:inherit;font-size:16px;cursor:pointer}
+.chip .ic{width:19px;height:19px}
+.chip b{font-weight:600;color:rgba(255,255,255,.72)}
+.chip.on{background:#fff;color:#002049;border-color:#fff}.chip.on b{color:#002049}
+.row{display:grid;grid-template-columns:128px minmax(0,1fr) 170px;column-gap:20px;align-items:center;min-height:76px;padding:0 16px;text-decoration:none;color:#fff;border-radius:6px}
+.row:nth-child(odd){background:rgba(255,255,255,.06)}
+.row:hover{background:rgba(255,255,255,.12)}
+.flap{--fh:46px;--fw:34px;--fs:28px}
+.unit{font-size:16px;margin-left:7px;color:rgba(255,255,255,.8)}
+.r-short{display:block;font-size:19px;font-weight:600}
+.r-title{display:block;font-size:16px;color:rgba(255,255,255,.7);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.r-sec{display:none}
+.r-end{font-size:16px;font-variant-numeric:tabular-nums;text-align:right}
+.empty{font-size:17px;padding:30px 0}
+@media (max-width:720px){
+ .hd{height:56px;padding:0 20px}.hd img{height:26px}.menu{display:none}
+ .wrap{display:block}
+ .side{padding:26px 20px 24px}
+ h1{font-size:32px}.count{font-size:16px;margin-top:12px}
+ form{margin-top:18px}form input,form button{height:50px;font-size:16px}
+ .quick{display:none}
+ .board{padding:18px 12px 30px}
+ .chips{flex-wrap:nowrap;overflow-x:auto;margin:0 -12px 14px;padding:0 12px}.chip{flex:none}
+ .row{grid-template-columns:70px minmax(0,1fr);grid-template-areas:"l m" "l e";row-gap:4px;padding:12px 10px}
+ .r-left{grid-area:l;align-self:start}.r-main{grid-area:m}.r-end{grid-area:e;text-align:left;font-size:15px;color:rgba(255,255,255,.8)}
+ .flap{--fh:38px;--fw:26px;--fs:22px}.unit{display:none}
+ .r-short{font-size:17px}.r-title{font-size:15px}
+}
+</style>
+</head>
+<body>
+<header class="hd">
+ <a href="https://www.gwtp.or.kr/gwtp/index.php"><img src="../shared/img/logo-navy.png" alt="강원테크노파크"></a>
+ <nav class="menu"><a href="https://www.gwtp.or.kr/gwtp/bbsNew_list.php?code=sub01a&keyvalue=sub01">공고안내</a><a href="https://www.gwtp.or.kr/gwtp/pageview.php?url=sub02a&keyvalue=sub02">사업안내</a><a href="https://www.gwtp.or.kr/gwtp/pageview.php?url=sub04a&keyvalue=sub04">입주안내</a><a href="https://www.gwtp.or.kr/gwtp/bbsNew_list.php?code=sub05a&keyvalue=sub05">경영공시</a><a href="https://www.gwtp.or.kr/gwtp/bbsNew_list.php?code=sub06a&keyvalue=sub06">TP NOW</a><a href="https://www.gwtp.or.kr/gwtp/pageview.php?url=sub07a&keyvalue=sub07">TP소개</a></nav>
+</header>
+<main class="wrap">
+ <section class="side">
+  <p class="date" id="date"></p>
+  <h1>지금 신청할 수 있는 지원사업</h1>
+  <p class="count" id="count"></p>
+  <form role="search"><input id="q" type="search" placeholder="장비, 수소, 시제품처럼 찾기" aria-label="공고 찾기"><button type="submit">찾기</button></form>
+  <nav class="quick" id="quick"></nav>
+ </section>
+ <section class="board" aria-label="접수 중인 공고">
+  <div class="chips" id="chips"></div>
+  <div id="board"></div>
+ </section>
+</main>
+<script src="../shared/base.js"></script>
+<script src="../shared/notices.js"></script>
+<script src="../shared/gw-core.js"></script>
+<script src="icons.js"></script>
+<script src="board-core.js"></script>
+<script>
+(function(){
+ var c=GB.counts(),t=GW.today;
+ document.getElementById('date').textContent=(t.getMonth()+1)+'월 '+t.getDate()+'일 기준';
+ document.getElementById('count').innerHTML='접수 중 <b>'+c.open+'건</b>, 상시 모집 <b>'+c.always+'건</b>, 마감일은 공고문 확인 <b>'+c.unknown+'건</b>';
+ document.getElementById('quick').innerHTML=
+  '<a href="https://www.gwtp.or.kr/gwtp/pageview.php?url=sub04c&keyvalue=sub04">'+GWI.icon('입주 공간')+'<span>입주 공간</span><b>6개 시군 15곳</b></a>'+
+  '<a href="https://eqnet.gwtp.or.kr/">'+GWI.icon('공동 장비')+'<span>공동 장비</span><b>1,143점</b></a>'+
+  '<a href="tel:0332485600">'+GWI.icon('전화')+'<span>대표전화</span><b>033-248-5600</b></a>';
+ GB.mount({board:document.getElementById('board'),chips:document.getElementById('chips'),search:document.getElementById('q'),still:true,chipOpts:{short:true}});
+})();
+</script>
+</body>
+</html>

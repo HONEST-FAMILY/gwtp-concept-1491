@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>강원테크노파크</title>
+<link rel="icon" href="../shared/img/favicon.png">
+<style>
+@font-face{font-family:'LINESeedKR';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'LINESeedKR';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');font-weight:700;font-display:swap}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'LINESeedKR',sans-serif;color:#111827;background:#fff;-webkit-font-smoothing:antialiased}
+a,button{color:inherit;text-decoration:none;font:inherit;background:none;border:0;cursor:pointer}
+.wrap{max-width:1440px;margin:0 auto;padding:0 60px}
+header{position:absolute;inset:0 0 auto 0;z-index:5;color:#fff}
+header .wrap{display:flex;align-items:center;height:96px;gap:48px}
+header img{height:36px}
+nav{display:flex;gap:44px;margin-left:auto;font-size:18px;font-weight:700}
+.hero{position:relative;height:calc(100vh - 132px);min-height:620px;max-height:900px;overflow:hidden;background:#1b2635;color:#fff}
+.hero .sc{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;opacity:0}
+.hero .sc.on{opacity:1}
+.copy{position:absolute;left:0;right:0;bottom:64px}
+.copy .wrap{display:flex;align-items:flex-end;justify-content:space-between;gap:48px}
+h1{font-size:clamp(40px,6.4vw,96px);line-height:1.16;font-weight:700;letter-spacing:-0.025em}
+.lead{margin-top:22px;font-size:20px;line-height:1.5}
+.ch{display:flex;flex-direction:column;gap:6px;min-width:300px}
+.ch button{display:grid;grid-template-columns:72px 1fr;align-items:baseline;gap:12px;text-align:left;padding:10px 0;opacity:.62}
+.ch button.on{opacity:1}
+.ch b{font-size:26px}
+.ch span{font-size:16px;line-height:1.45}
+.bar{background:#fff}
+.bar .wrap{display:flex;gap:40px;padding-top:30px;padding-bottom:30px;align-items:flex-start}
+.bar h2{font-size:18px;line-height:1.5;min-width:150px;color:#002049}
+.bar h2 em{font-style:normal;color:#c8102e}
+.list{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;flex:1}
+.nt{display:flex;flex-direction:column;gap:6px;font-size:16px;line-height:1.45}
+.nt-d{font-weight:700;color:#002049}
+.nt-d.urgent{color:#c8102e}
+.nt-t{font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nt-m{color:#4b5563;font-size:15px}
+@media (max-width:900px){
+  .wrap{padding:0 20px}
+  nav{display:none}
+  header .wrap{height:64px}
+  header img{height:26px}
+  .hero{height:76svh;min-height:520px}
+  .copy{bottom:24px}
+  .copy .wrap{flex-direction:column;align-items:flex-start;gap:18px}
+  h1{font-size:38px}
+  .lead{font-size:16px;margin-top:12px}
+  .ch{flex-direction:row;min-width:0;gap:18px}
+  .ch button{display:block;padding:4px 0}
+  .ch b{font-size:18px}
+  .ch span{display:none}
+  .bar .wrap{flex-direction:column;gap:14px}
+  .list{grid-template-columns:1fr;gap:18px}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap"><img src="../shared/img/logo-white.png" alt="강원테크노파크"><nav><a href="#">공고안내</a><a href="#">사업안내</a><a href="#">입주안내</a><a href="#">경영공시</a><a href="#">TP NOW</a><a href="#">TP소개</a></nav></div></header>
+<section class="hero">
+  <img class="sc on" src="assets/g2-chuncheon.jpg" alt="춘천 신북읍 강원테크노파크 일대">
+  <img class="sc" src="assets/g2-wonju.jpg" alt="원주 강원테크노파크 시설 일대">
+  <img class="sc" src="assets/g2-gangneung.jpg" alt="강릉 시가지 너머 동해">
+  <div class="copy"><div class="wrap">
+    <div><h1>강원의 잠재력을 깨워,<br>세계로</h1><p class="lead">그 중심에 강원테크노파크가 있습니다</p></div>
+    <div class="ch">
+      <button class="on" data-i="0"><b>춘천</b><span>시설 3곳, 바이오 특화</span></button>
+      <button data-i="1"><b>원주</b><span>시설 3곳, 디지털헬스케어 특화</span></button>
+      <button data-i="2"><b>강릉</b><span>시설 5곳, 세라믹 특화</span></button>
+    </div>
+  </div></div>
+</section>
+<section class="bar"><div class="wrap"><h2>지금 접수 중 <em data-open-count></em>건</h2><div class="list" data-notices="4"></div></div></section>
+<script src="../shared/base.js"></script><script src="../shared/notices.js"></script><script src="../shared/gw-core.js"></script><script src="strip.js"></script>
+<script>
+document.querySelectorAll('.ch button').forEach(function(b){b.addEventListener('click',function(){var i=+b.dataset.i;document.querySelectorAll('.sc').forEach(function(s,k){s.classList.toggle('on',k===i)});document.querySelectorAll('.ch button').forEach(function(x,k){x.classList.toggle('on',k===i)})})});
+</script>
+</body>
+</html>

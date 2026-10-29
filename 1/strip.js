@@ -11,7 +11,7 @@
     var items = G.live().sort(G.byDeadline).slice(0, max || 4);
     el.innerHTML = items.map(function (n) {
       var b = G.badge(n);
-      var due = n.apply_end ? G.fmtShort(n.apply_end) + '(' + G.weekday(n.apply_end) + ') 마감' : (n.apply_note || '연중 상시');
+      var due = n.apply_end ? G.fmtShort(n.apply_end) + '(' + G.weekday(n.apply_end) + ') 마감' : (G.status(n) === 'always' ? (n.apply_note || '연중 상시') : (n.apply_note || meta(n)));
       return '<a class="nt" href="' + G.esc(n.url || LIST) + '" target="_blank" rel="noopener">' +
         '<span class="nt-d ' + b.cls + '">' + G.esc(b.text) + '</span>' +
         '<span class="nt-t">' + G.esc(n.short || n.title) + '</span>' +

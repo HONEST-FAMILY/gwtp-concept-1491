@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>강원테크노파크</title>
+<link rel="icon" href="../shared/img/favicon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="flap.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:"Pretendard Variable",Pretendard,sans-serif;color:#fff;background:#002049;-webkit-font-smoothing:antialiased;word-break:keep-all}
+a{color:inherit}
+.hd{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:#fff;color:#111827}
+.hd img{height:34px;display:block}
+.menu a{font-size:17px;font-weight:600;text-decoration:none;margin-left:40px}
+.board{padding:40px 60px 48px}
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+h1{font-size:50px;font-weight:700;letter-spacing:-.02em;margin:0;line-height:1.2}
+.count{font-size:18px;margin:12px 0 0;color:rgba(255,255,255,.85)}
+form{display:flex;flex:0 0 440px}
+form input{flex:1;min-width:0;height:56px;border:0;border-radius:4px 0 0 4px;padding:0 18px;font:inherit;font-size:17px;color:#111827}
+form button{height:56px;padding:0 24px;border:0;border-radius:0 4px 4px 0;background:#E5E7EB;color:#002049;font:inherit;font-size:17px;font-weight:700}
+.tiles{display:flex;gap:10px;margin:30px 0 26px;overflow-x:auto}
+.tile{flex:none;display:flex;flex-direction:column;align-items:center;gap:8px;background:none;border:0;color:#fff;font:inherit;cursor:pointer;padding:0;width:84px}
+.tile .sq{position:relative;width:64px;height:64px;display:grid;place-items:center;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden}
+.tile .sq::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:#002049}
+.tile .ic{width:30px;height:30px}
+.tile span{font-size:15px;white-space:nowrap}
+.tile b{position:absolute;right:4px;top:3px;font-size:13px;font-weight:700;color:inherit;opacity:.8}
+.tile.on .sq{background:#fff;color:#002049}
+.rows .row{display:grid;grid-template-columns:200px minmax(0,1fr) 230px 190px;column-gap:24px;align-items:center;min-height:100px;text-decoration:none;color:#fff;border-top:1px solid rgba(255,255,255,.16)}
+.rows .row:nth-child(n+7){display:none}
+.rows.all .row:nth-child(n+7){display:grid}
+.flap{--fh:66px;--fw:48px;--fs:42px;--fg:4px;--fr:4px}
+.unit{font-size:19px;margin-left:10px;color:rgba(255,255,255,.85)}
+.r-short{display:block;font-size:22px;font-weight:600}
+.r-title{display:block;font-size:16px;color:rgba(255,255,255,.72);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:4px}
+.r-sec{display:flex;align-items:center;gap:10px;font-size:16px}.r-sec .ic{width:24px;height:24px}
+.r-sec em{display:block;font-style:normal;font-size:15px;color:rgba(255,255,255,.7)}
+.r-end{font-size:18px;text-align:right;font-variant-numeric:tabular-nums}
+.more{margin-top:18px;height:52px;padding:0 24px;border:1px solid rgba(255,255,255,.5);border-radius:4px;background:none;color:#fff;font:inherit;font-size:17px;cursor:pointer}
+@media (max-width:720px){
+ .hd{height:56px;padding:0 20px}.hd img{height:26px}.menu{display:none}
+ .board{padding:22px 20px 32px}
+ .top{display:block}h1{font-size:28px}.count{font-size:15px;margin-top:6px}
+ form{margin-top:14px}form input,form button{height:48px;font-size:16px}
+ .tiles{margin:16px -20px 10px;padding:0 20px;gap:4px}.tile{width:68px}.tile .sq{width:52px;height:52px}.tile .ic{width:24px;height:24px}
+ .rows .row{grid-template-columns:96px minmax(0,1fr);grid-template-areas:"l m" "l e";padding:12px 0;min-height:0}
+ .r-left{grid-area:l;align-self:start}.r-main{grid-area:m}.r-sec{display:none}.r-end{grid-area:e;text-align:left;font-size:15px}
+ .flap{--fh:44px;--fw:32px;--fs:27px}.unit{display:none}
+ .r-short{font-size:17px}.r-title{font-size:15px}
+}
+</style>
+</head>
+<body>
+<header class="hd">
+ <a href="https://www.gwtp.or.kr/gwtp/index.php"><img src="../shared/img/logo-navy.png" alt="강원테크노파크"></a>
+ <nav class="menu"><a href="https://www.gwtp.or.kr/gwtp/bbsNew_list.php?code=sub01a&keyvalue=sub01">공고안내</a><a href="https://www.gwtp.or.kr/gwtp/pageview.php?url=sub02a&keyvalue=sub02">사업안내</a><a href="https://www.gwtp.or.kr/gwtp/pageview.php?url=sub04a&keyvalue=sub04">입주안내</a><a href="https://www.gwtp.or.kr/gwtp/bbsNew_list.php?code=sub05a&keyvalue=sub05">경영공시</a><a href="https://www.gwtp.or.kr/gwtp/bbsNew_list.php?code=sub06a&keyvalue=sub06">TP NOW</a><a href="https://www.gwtp.or.kr/gwtp/pageview.php?url=sub07a&keyvalue=sub07">TP소개</a></nav>
+</header>
+<main class="board">
+ <div class="top">
+  <div><h1>지금 신청할 수 있는 지원사업</h1><p class="count" id="count"></p></div>
+  <form role="search"><input id="q" type="search" placeholder="장비, 수소, 시제품처럼 찾기" aria-label="공고 찾기"><button type="submit">찾기</button></form>
+ </div>
+ <div class="tiles" id="tiles" role="group" aria-label="분야로 거르기"></div>
+ <div class="rows" id="board"></div>
+ <button class="more" id="more" type="button"></button>
+</main>
+<script src="../shared/base.js"></script>
+<script src="../shared/notices.js"></script>
+<script src="../shared/gw-core.js"></script>
+<script src="icons.js"></script>
+<script src="board-core.js"></script>
+<script>
+(function(){
+ var c=GB.counts();
+ document.getElementById('count').textContent='접수 중 '+c.open+'건, 상시 모집 '+c.always+'건, 마감일은 공고문 확인 '+c.unknown+'건';
+ var all=GB.live(),tiles=document.getElementById('tiles'),cur='';
+ var api=GB.mount({board:document.getElementById('board'),search:document.getElementById('q'),still:true});
+ function drawTiles(){
+  var items=[{s:'',n:'전체'}].concat(GB.SECTORS.map(function(s){return{s:s,n:s.replace('디지털헬스·의료기기','디지털헬스').replace('수소·에너지','수소')};}));
+  tiles.innerHTML=items.map(function(it){var k=it.s?all.filter(function(x){return GW.sectorOK(x,it.s);}).length:all.length;return '<button type="button" class="tile'+(it.s===cur?' on':'')+'" data-s="'+it.s+'" aria-pressed="'+(it.s===cur)+'"><span class="sq">'+GWI.icon(it.s||'전 분야')+'<b>'+k+'</b></span><span>'+it.n+'</span></button>';}).join('');
+ }
+ drawTiles();
+ tiles.addEventListener('click',function(e){var b=e.target.closest('.tile');if(!b)return;cur=b.getAttribute('data-s');drawTiles();api.pick(cur);more();});
+ var M=document.getElementById('more'),R=document.getElementById('board');
+ function more(){var n=R.querySelectorAll('.row').length;M.hidden=n<=6;M.textContent=R.classList.contains('all')?'처음 6건만 보기':'나머지 '+(n-6)+'건 더 보기';}
+ M.addEventListener('click',function(){R.classList.toggle('all');more();});
+ more();
+})();
+</script>
+</body>
+</html>

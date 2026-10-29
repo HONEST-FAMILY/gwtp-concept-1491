@@ -47,11 +47,11 @@
     if (!r.length) return '';
     return r.join(', ').replace('도내 전체', '강원 전체');
   }
-  function cellHTML(c) {
-    return '<span class="fc"><span class="ft"><i>' + c + '</i></span><span class="fb"><i>' + c + '</i></span></span>';
+  function cellHTML(c, show) {
+    return '<span class="fc' + (c === ' ' ? ' blank' : '') + '"><span class="ft"><i>' + show + '</i></span><span class="fb"><i>' + show + '</i></span></span>';
   }
   function flapHTML(f, blank) {
-    return '<span class="flap ' + f.cls + '" role="img" aria-label="' + f.label + '">' + f.cells.map(function (c) { return cellHTML(blank ? ' ' : c); }).join('') + '</span>' + (f.unit ? '<span class="unit" aria-hidden="true">' + f.unit + '</span>' : '');
+    return '<span class="flap ' + f.cls + '" role="img" aria-label="' + f.label + '">' + f.cells.map(function (c) { return cellHTML(c, blank ? ' ' : c); }).join('') + '</span>' + (f.unit ? '<span class="unit" aria-hidden="true">' + f.unit + '</span>' : '');
   }
   function rowHTML(n, blank) {
     var f = flapOf(n), sec = mainSector(n), reg = regionText(n);
@@ -112,6 +112,19 @@
     });
     return end;
   }
+  function fitText(el) {
+    var full = el.getAttribute('data-full');
+    if (full == null) { full = el.textContent; el.setAttribute('data-full', full); }
+    el.textContent = full;
+    if (el.scrollWidth <= el.clientWidth + 1) return;
+    var lo = 0, hi = full.length;
+    while (lo < hi) { var mid = (lo + hi + 1) >> 1; el.textContent = full.slice(0, mid).replace(/\s+$/, '') + '…'; if (el.scrollWidth <= el.clientWidth + 1) lo = mid; else hi = mid - 1; }
+    el.textContent = full.slice(0, lo).replace(/\s+$/, '') + '…';
+    el.title = full;
+  }
+  function fitAll(box) { box.querySelectorAll('.r-title').forEach(fitText); }
+  var fitTimer;
+  window.addEventListener('resize', function () { clearTimeout(fitTimer); fitTimer = setTimeout(function () { document.querySelectorAll('.rows,#board').forEach(fitAll); }, 120); });
   function counts() {
     var c = { open: 0, always: 0, unknown: 0 };
     live().forEach(function (n) { c[G.status(n)]++; });
@@ -132,6 +145,8 @@
       if (o.max) rows = rows.slice(0, o.max);
       o.board.innerHTML = rows.length ? rows.map(function (n) { return rowHTML(n, anim && !reduce); }).join('') : '<p class="empty">접수 중인 공고 중에는 ‘' + G.esc(state.w || state.s) + '’에 맞는 것이 없습니다. <a href="https://www.gwtp.or.kr/gwtp/bbsNew_list.php?code=sub01b&keyvalue=sub01" target="_blank" rel="noopener">지난 공고까지 보기</a></p>';
       if (o.count) o.count.textContent = rows.length + '건';
+      fitAll(o.board);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fitAll(o.board); });
       if (anim) return animateRows(o.board, rows);
       return 0;
     }
@@ -150,5 +165,5 @@
     draw(!o.still);
     return api;
   }
-  window.GB = { live: live, list: list, counts: counts, flapOf: flapOf, endText: endText, mainSector: mainSector, rowHTML: rowHTML, chipsHTML: chipsHTML, mount: mount, SECTORS: SECTORS, reduce: reduce };
+  window.GB = { fitAll: fitAll, live: live, list: list, counts: counts, flapOf: flapOf, endText: endText, mainSector: mainSector, rowHTML: rowHTML, chipsHTML: chipsHTML, mount: mount, SECTORS: SECTORS, reduce: reduce };
 })();

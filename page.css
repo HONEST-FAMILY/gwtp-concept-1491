@@ -88,3 +88,5 @@ dd{margin:2px 0 0;color:#2c313a}
  .dt{display:block;overflow-x:auto}
  .quotes li{font-size:17px}
 }
+
+.sec h3 + .note{margin:0 0 18px}

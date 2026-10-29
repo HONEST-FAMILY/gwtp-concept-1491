@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>강원테크노파크</title>
+<link rel="icon" href="../shared/img/favicon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="flap.css">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"Pretendard Variable",Pretendard,sans-serif;color:#111827;background:#002049;-webkit-font-smoothing:antialiased;word-break:keep-all}
+a{color:inherit}
+.hd{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:#fff}
+.hd img{height:34px;display:block}
+.menu a{font-size:17px;font-weight:600;text-decoration:none;margin-left:40px}
+.mbtn{display:none}
+.wrap{display:grid;grid-template-columns:480px minmax(0,1fr);min-height:calc(100vh - 72px)}
+.side{background:#F2F4F6;padding:48px 40px 40px 60px}
+.date{font-size:16px;margin:0 0 12px}
+h1{font-size:40px;font-weight:700;letter-spacing:-.02em;margin:0;line-height:1.25;color:#002049}
+.count{font-size:17px;line-height:1.65;margin:18px 0 0}
+.count b{color:#002049}
+form{margin:26px 0 0;display:flex}
+form input{flex:1;min-width:0;height:56px;border:1.5px solid #002049;border-right:0;border-radius:4px 0 0 4px;padding:0 16px;font:inherit;font-size:17px;background:#fff;color:#111827}
+form button{height:56px;padding:0 22px;border:0;border-radius:0 4px 4px 0;background:#002049;color:#fff;font:inherit;font-size:17px;font-weight:700;cursor:pointer}
+.quick{margin-top:34px}
+.quick a{display:flex;align-items:center;gap:14px;text-decoration:none;font-size:17px;padding:13px 0}
+.quick .ic{width:26px;height:26px;color:#002049}
+.quick b{margin-left:auto;font-variant-numeric:tabular-nums;color:#002049}
+.board{color:#fff;padding:32px 56px 40px 48px}
+.tiles{display:flex;gap:8px;margin:0 0 22px;overflow-x:auto;scrollbar-width:none}
+.tile{flex:none;display:flex;flex-direction:column;align-items:center;gap:8px;background:none;border:0;color:#fff;font:inherit;cursor:pointer;padding:0;min-width:86px}
+.tile .sq{position:relative;width:60px;height:60px;display:grid;place-items:center;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden;transition:transform .15s cubic-bezier(.2,.7,.3,1)}
+.tile:active .sq{transform:scale(.96)}
+.tile .sq::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:#002049}
+.tile .ic{width:28px;height:28px}
+.tile span{font-size:15px;white-space:nowrap}
+.tile span b{font-weight:700;margin-left:4px}
+.tile:hover .sq{background:rgba(255,255,255,.2)}
+.tile.on .sq{background:#fff;color:#002049}
+.rows .row{display:grid;grid-template-columns:156px minmax(0,1fr) 150px 172px;column-gap:20px;align-items:center;min-height:88px;padding:10px 0;text-decoration:none;color:#fff;border-top:1px solid rgba(255,255,255,.16)}
+.rows .row:hover .r-short{text-decoration:underline;text-underline-offset:4px}
+.rows .row:nth-child(n+7){display:none}
+.rows.all .row:nth-child(n+7){display:grid}
+.flap{--fh:60px;--fw:44px;--fs:38px;--fg:4px;--fr:4px}
+.unit{font-size:18px;margin-left:10px;color:rgba(255,255,255,.85)}
+.r-short{display:block;font-size:21px;font-weight:600;line-height:1.35}
+.r-title{display:block;font-size:16px;color:rgba(255,255,255,.72);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:4px}
+.r-sec{display:flex;align-items:center;gap:10px;font-size:16px}.r-sec .ic{width:24px;height:24px}
+.r-sec em{display:block;font-style:normal;font-size:15px;color:rgba(255,255,255,.72)}
+.r-end{font-size:17px;text-align:right;font-variant-numeric:tabular-nums}
+.more{margin-top:16px;height:50px;padding:0 22px;border:1px solid rgba(255,255,255,.5);border-radius:4px;background:none;color:#fff;font:inherit;font-size:16px;cursor:pointer}
+.empty{font-size:17px;color:#fff;padding:24px 0}
+.empty a{color:#fff}
+@media (max-width:1180px) and (min-width:721px){
+ .wrap{grid-template-columns:360px minmax(0,1fr)}
+ .side{padding:40px 32px 32px 40px}h1{font-size:34px}
+ .board{padding:28px 32px 36px 32px}
+ .rows .row{grid-template-columns:150px minmax(0,1fr) 150px}
+ .r-sec{display:none}.flap{--fh:54px;--fw:40px;--fs:34px}
+}
+@media (max-aspect-ratio:4/5) and (min-width:721px){
+ .wrap{display:block}
+ .side{padding:40px 40px 32px}
+ h1 br{display:none}
+ .quick{display:grid;grid-template-columns:repeat(3,1fr);column-gap:28px;margin-top:22px}
+ .rows .row:nth-child(n+7){display:grid}.more{display:none}
+}
+@media (max-width:720px){
+ .hd{height:56px;padding:0 20px}.hd img{height:26px}.menu{display:none}
+ .mbtn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin-right:-10px;border:0;background:none;color:#002049;cursor:pointer}
+ .menu.open{display:flex;flex-direction:column;position:absolute;top:56px;left:0;right:0;background:#fff;padding:8px 20px 16px;z-index:5;box-shadow:0 8px 16px rgba(0,0,0,.12)}
+ .menu.open a{margin:0;padding:12px 0;font-size:17px}
+ .hd{position:relative}
+ .wrap{display:block}
+ .side{padding:20px 20px 18px}
+ .date{font-size:15px;margin-bottom:6px}
+ h1{font-size:28px}h1 br{display:none}
+ .count{font-size:15px;margin-top:6px}
+ form{margin-top:14px}form input,form button{height:48px;font-size:16px}
+ .quick{display:none}
+ .board{padding:16px 20px 28px}
+ .tiles{display:flex;gap:4px;overflow-x:auto;margin:0 -20px 6px;padding:0 20px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}.tiles::-webkit-scrollbar{display:none}.tile{flex:none;min-width:64px;gap:6px}.tile .sq{width:48px;height:48px}.tile .ic{width:24px;height:24px}.tile span b{display:none}
+ .rows .row{grid-template-columns:84px minmax(0,1fr);grid-template-areas:"l m" "l e";row-gap:2px;padding:12px 0;min-height:0}
+ .r-left{grid-area:l;align-self:start}.r-main{grid-area:m}.r-sec{display:none}.r-end{grid-area:e;text-align:left;font-size:15px;color:rgba(255,255,255,.85)}
+ .flap{--fh:42px;--fw:30px;--fs:25px;--fg:3px}.unit{display:none}
+ .r-short{font-size:17px;white-space:normal}.r-title{font-size:15px}
+ .quick-m{display:block;background:#F2F4F6;padding:8px 20px 20px}
+ .quick-m a{display:flex;align-items:center;gap:12px;text-decoration:none;font-size:16px;padding:12px 0}
+ .quick-m .ic{width:24px;height:24px;color:#002049}.quick-m b{margin-left:auto;color:#002049}
+}
+@media (min-width:721px){.quick-m{display:none}}
+</style>
+</head>
+<body>
+<header class="hd">
+ <a href="https://www.gwtp.or.kr/gwtp/index.php"><img src="../shared/img/logo-navy.png" alt="강원테크노파크"></a>
+ <nav class="menu" id="menu"><a href="https://www.gwtp.or.kr/gwtp/bbsNew_list.php?code=sub01a&keyvalue=sub01">공고안내</a><a href="https://www.gwtp.or.kr/gwtp/pageview.php?url=sub02a&keyvalue=sub02">사업안내</a><a href="https://www.gwtp.or.kr/gwtp/pageview.php?url=sub04a&keyvalue=sub04">입주안내</a><a href="https://www.gwtp.or.kr/gwtp/bbsNew_list.php?code=sub05a&keyvalue=sub05">경영공시</a><a href="https://www.gwtp.or.kr/gwtp/bbsNew_list.php?code=sub06a&keyvalue=sub06">TP NOW</a><a href="https://www.gwtp.or.kr/gwtp/pageview.php?url=sub07a&keyvalue=sub07">TP소개</a></nav>
+ <button class="mbtn" id="mbtn" type="button" aria-label="전체 메뉴" aria-expanded="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</header>
+<main class="wrap">
+ <section class="side">
+  <p class="date" id="date"></p>
+  <h1>지금 신청할 수 있는 <br>지원사업</h1>
+  <p class="count" id="count"></p>
+  <form role="search"><input id="q" type="search" placeholder="장비, 수소, 시제품처럼 찾기" aria-label="공고 찾기"><button type="submit">찾기</button></form>
+  <nav class="quick" id="quick" aria-label="바로가기"></nav>
+ </section>
+ <section class="board" aria-label="접수 중인 공고">
+  <div class="tiles" id="tiles" role="group" aria-label="분야로 거르기"></div>
+  <div class="rows" id="board"></div>
+  <button class="more" id="more" type="button"></button>
+ </section>
+</main>
+<nav class="quick-m" id="quickm" aria-label="바로가기"></nav>
+<script>window.__still=true;</script>
+<script src="../shared/base.js"></script>
+<script src="../shared/notices.js"></script>
+<script src="../shared/gw-core.js"></script>
+<script src="icons.js"></script>
+<script src="board-core.js"></script>
+<script>
+(function(){
+ var STILL=!!window.__still;
+ var c=GB.counts(),t=GW.today;
+ document.getElementById('date').textContent=(t.getMonth()+1)+'월 '+t.getDate()+'일 기준';
+ document.getElementById('count').innerHTML='접수 중 <b>'+c.open+'건</b>, 상시 모집 <b>'+c.always+'건</b><br>마감일은 공고문 확인 <b>'+c.unknown+'건</b>';
+ var q='<a href="https://www.gwtp.or.kr/gwtp/pageview.php?url=sub04c&keyvalue=sub04">'+GWI.icon('입주 공간')+'<span>입주 공간</span><b>6개 시군 15곳</b></a>'+
+  '<a href="https://eqnet.gwtp.or.kr/">'+GWI.icon('공동 장비')+'<span>공동 장비</span><b>1,143점</b></a>'+
+  '<a href="tel:033-248-5600">'+GWI.icon('전화')+'<span>대표전화</span><b>033-248-5600</b></a>';
+ document.getElementById('quick').innerHTML=q;document.getElementById('quickm').innerHTML=q;
+ var all=GB.live(),tiles=document.getElementById('tiles'),cur='';
+ var api=GB.mount({board:document.getElementById('board'),search:document.getElementById('q'),still:STILL});
+ function drawTiles(){
+  var items=[{s:'',n:'전체'}].concat(GB.SECTORS.map(function(s){return{s:s,n:s.replace('디지털헬스·의료기기','디지털헬스').replace('수소·에너지','수소')};}));
+  tiles.innerHTML=items.map(function(it){var k=it.s?all.filter(function(x){return GW.sectorOK(x,it.s);}).length:all.length;return '<button type="button" class="tile'+(it.s===cur?' on':'')+'" data-s="'+it.s+'" aria-pressed="'+(it.s===cur)+'" aria-label="'+it.n+' '+k+'건"><span class="sq">'+GWI.icon(it.s||'전 분야')+'</span><span>'+it.n+'<b>'+k+'</b></span></button>';}).join('');
+ }
+ drawTiles();
+ var M=document.getElementById('more'),R=document.getElementById('board');
+ function more(){var n=R.querySelectorAll('.row').length;M.hidden=n<=6;M.textContent=R.classList.contains('all')?'처음 6건만 보기':'나머지 '+(n-6)+'건 더 보기';}
+ tiles.addEventListener('click',function(e){var b=e.target.closest('.tile');if(!b)return;cur=b.getAttribute('data-s');drawTiles();api.pick(cur);more();});
+ document.getElementById('q').addEventListener('input',function(){setTimeout(more,160);});
+ M.addEventListener('click',function(){R.classList.toggle('all');more();});
+ more();
+ var mb=document.getElementById('mbtn'),mn=document.getElementById('menu');
+ mb.addEventListener('click',function(){var o=mn.classList.toggle('open');mb.setAttribute('aria-expanded',o);});
+ window.__board={tap:function(s){var b=tiles.querySelector('.tile[data-s="'+s+'"]');if(b)b.click();},api:api};
+})();
+</script>
+<script>
+(function(){
+ function at(ms,fn){var a=document.documentElement.animate([{opacity:1},{opacity:1}],{duration:ms});a.onfinish=fn;}
+ window.__recStart=function(){
+  window.__board.api.draw(true);
+  at(3600,function(){window.__board.tap('수소·에너지');});
+  at(6900,function(){window.__board.tap('');});
+ };
+})();
+</script>
+</body>
+</html>
