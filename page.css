@@ -90,3 +90,18 @@ dd{margin:2px 0 0;color:#2c313a}
 }
 
 .sec h3 + .note{margin:0 0 18px}
+.mrow{display:grid;grid-template-columns:150px repeat(3,1fr);gap:14px;align-items:start;margin-top:30px}
+.mrow .mk{margin:0;font-weight:800;font-size:17px;line-height:1.4}
+.mrow img{border:1px solid #e3e6ea}
+.mrow figcaption a{display:inline-block;margin-right:12px;font-weight:600}
+.mrow figure.me figcaption b{color:#c8102e}
+.secs{margin:18px 0 0;padding-left:22px}
+.secs li{margin-bottom:8px}
+.secs li span{display:block;color:#6b7280;font-size:15px}
+.walk{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:10px}
+.walk img{border:1px solid #e3e6ea}
+@media (max-width:900px){
+ .mrow{grid-template-columns:1fr 1fr 1fr}
+ .mrow .mk{grid-column:1/-1}
+ .walk{grid-template-columns:1fr 1fr}
+}

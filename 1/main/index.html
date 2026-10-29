@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>강원테크노파크</title>
+<link rel="icon" href="../../shared/img/favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hd" id="hd">
+  <div class="wrap hd-in">
+    <a class="logo" href="#top" aria-label="강원테크노파크 처음으로"><img class="lw" src="../../shared/img/logo-white.png" alt="강원테크노파크"><img class="ln" src="../../shared/img/logo-navy.png" alt=""></a>
+    <nav class="gnb" id="gnb" aria-label="주 메뉴"></nav>
+    <button class="mbtn" id="mbtn" aria-label="전체 메뉴 열기" aria-expanded="false"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+  <div class="mega" id="mega"><div class="wrap mega-in" id="megaIn"></div></div>
+</header>
+<div class="mmenu" id="mmenu" hidden>
+  <div class="mm-top"><img src="../../shared/img/logo-white.png" alt="강원테크노파크"><button class="mm-close" id="mclose" aria-label="전체 메뉴 닫기"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="mm-list" id="mmList"></div>
+</div>
+
+<main id="top">
+<section class="hero" aria-label="첫 화면">
+  <img class="sc on" src="../assets/r6-cliff.jpg" srcset="../assets/r6-cliff-m.jpg 1280w, ../assets/r6-cliff.jpg 2560w" sizes="100vw" alt="새벽빛이 드는 강원의 바위산">
+  <img class="sc" src="../assets/r6-sea.jpg" srcset="../assets/r6-sea-m.jpg 1280w, ../assets/r6-sea.jpg 2560w" sizes="100vw" alt="강원 동해안">
+  <img class="sc" src="../assets/r7-chuncheon.jpg" srcset="../assets/r7-chuncheon-m.jpg 1280w, ../assets/r7-chuncheon.jpg 2560w" sizes="100vw" alt="춘천 신북읍 강원테크노파크 일대">
+  <div class="copy"><div class="wrap">
+    <h1><span class="ln1"><span>강원의 잠재력을 깨워,</span></span><span class="ln1"><span>세계로</span></span></h1>
+    <p class="lead">그 중심에 강원테크노파크가 있습니다</p>
+    <div class="prog">
+      <button class="on" data-i="0"><b>강원의 산</b><span>해 뜬 직후</span></button>
+      <button data-i="1"><b>동해</b><span>세계로 가는 바다</span></button>
+      <button data-i="2"><b>춘천 신북읍</b><span>그 중심</span></button>
+    </div>
+  </div></div>
+</section>
+<section class="bar" aria-label="지금 신청할 수 있는 공고 요약"><div class="wrap bar-in"><h2>지금 신청할 수 있는 공고 <em data-open-count></em>건</h2><div class="list" id="barList"></div></div></section>
+
+<section class="sec notices" id="notices">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2">지원사업 공고</h2>
+      <form class="search" id="nsearch" role="search"><input id="nq" type="search" aria-label="공고 찾기" placeholder="장비, 수소, 시제품처럼 찾기" autocomplete="off"><button type="submit">찾기</button></form>
+    </div>
+    <div class="tabs" id="ntabs" role="tablist" aria-label="분야로 거르기"></div>
+    <div class="ngrid" id="ngrid"></div>
+    <div class="boards">
+      <div class="b-head"><h3 class="h3">게시판 새 글</h3><div class="btabs" id="btabs" role="tablist" aria-label="게시판"></div></div>
+      <ul class="blist" id="blist"></ul>
+      <a class="more" id="bmore" href="#" target="_blank" rel="noopener">게시판 전체 보기</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec about" id="about">
+  <div class="wrap">
+    <p class="say">산업을 육성하고 기업의 성장을 지원함으로써 강원의 미래를 견인합니다.</p>
+    <p class="say-src">강원테크노파크 원장 인사말</p>
+    <dl class="nums" id="nums"></dl>
+  </div>
+  <div class="band"><img src="img/band-campus.jpg" alt="강원테크노파크 단지와 주변 들판" loading="lazy"></div>
+</section>
+
+<section class="sec biz" id="biz">
+  <div class="wrap biz-head"><h2 class="h2">주요 사업</h2><p class="h2-sub">원장 인사말이 꼽은 여섯 분야를 강원 여섯 거점이 나눠 맡습니다.</p></div>
+  <div class="stage" id="stage">
+    <div class="stage-pin">
+      <div class="wrap stage-in">
+        <ol class="stage-nav" id="stageNav"></ol>
+        <div class="stage-txt" id="stageTxt"></div>
+        <div class="stage-pic" id="stagePic"></div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap bizlist" id="bizList"></div>
+</section>
+
+<section class="sec places" id="places">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="h2">입주 공간과 지원센터 15곳</h2><p class="h2-sub">춘천, 홍천, 원주, 강릉, 태백, 삼척 여섯 시군에 있습니다. 누르면 층별 구성을 볼 수 있습니다.</p></div>
+    <div class="tabs" id="ptabs" role="tablist" aria-label="시군으로 거르기"></div>
+    <div class="pgrid" id="pgrid"></div>
+  </div>
+</section>
+
+<section class="sec news" id="news">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="h2">강원테크노파크 소식</h2><a class="more" id="newsMore" href="#" target="_blank" rel="noopener">언론보도 전체 보기</a></div>
+    <div class="ngrid2" id="newsGrid"></div>
+  </div>
+</section>
+
+<section class="sec links" id="links">
+  <div class="wrap links-in">
+    <div class="call">
+      <h2 class="h2">바로가기</h2>
+      <p class="call-lab">대표전화</p>
+      <a class="call-num" id="callNum" href="#"></a>
+      <p class="call-addr" id="callAddr"></p>
+    </div>
+    <ul class="sys" id="sys"></ul>
+  </div>
+</section>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-top"><img src="../../shared/img/logo-white.png" alt="강원테크노파크"><p id="ftAddr"></p></div>
+    <div class="ft-map" id="ftMap"></div>
+    <p class="ft-copy">© 강원테크노파크</p>
+  </div>
+</footer>
+
+<div class="drawer" id="drawer" hidden>
+  <div class="dr-back" id="drBack"></div>
+  <aside class="dr-panel" id="drPanel" role="dialog" aria-modal="true" aria-labelledby="drTitle">
+    <button class="dr-close" id="drClose"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg><span>닫기</span></button>
+    <div id="drBody"></div>
+  </aside>
+</div>
+
+<script src="../../shared/base.js"></script>
+<script src="../../shared/notices.js"></script>
+<script src="../../shared/gw-core.js"></script>
+<script src="../../shared/home-lists.js"></script>
+<script src="../../shared/facilities.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

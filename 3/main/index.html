@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>강원테크노파크</title>
+<link rel="icon" href="../../shared/img/favicon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="flap.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hd" id="hd">
+ <a class="logo" href="https://www.gwtp.or.kr/gwtp/index.php"><img src="../../shared/img/logo-navy.png" alt="강원테크노파크"></a>
+ <nav class="menu" id="menu" aria-label="주 메뉴"></nav>
+ <button class="mbtn" id="mbtn" type="button" aria-label="전체 메뉴" aria-expanded="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+ <div class="mega" id="mega" aria-hidden="true"><div class="mega-in" id="megain"></div></div>
+</header>
+
+<main>
+<section class="wrap" id="notices" aria-label="지금 신청할 수 있는 지원사업">
+ <div class="side">
+  <div class="side-in">
+   <p class="date" id="date"></p>
+   <h1>지금 신청할 수 있는 <br>지원사업</h1>
+   <p class="count" id="count"></p>
+   <form role="search" id="qf"><input id="q" type="search" placeholder="장비, 수소, 시제품처럼 찾기" aria-label="공고 찾기"><button type="submit">찾기</button></form>
+   <nav class="quick" id="quick" aria-label="바로가기"></nav>
+  </div>
+ </div>
+ <div class="board" id="boardwrap">
+  <div class="tiles" id="tiles" role="group" aria-label="분야로 거르기"></div>
+  <div class="rows" id="board"></div>
+  <div class="bbs" id="bbs">
+   <h2 class="bbs-h">게시판 새 글</h2>
+   <div class="tabs" id="tabs" role="tablist" aria-label="게시판"></div>
+   <div class="bbs-list" id="bbslist" role="tabpanel"></div>
+   <a class="bbs-all" id="bbsall" href="#" target="_blank" rel="noopener">게시판 전체 보기</a>
+  </div>
+ </div>
+</section>
+<nav class="quick-m" id="quickm" aria-label="바로가기"></nav>
+
+<section class="sec decl" id="decl">
+ <div class="in">
+  <h2 class="decl-h">기업 성장의 전 주기를 <br>밀착 지원하겠습니다</h2>
+  <p class="decl-s">기술개발부터 사업화, 인재 양성, 생태계 조성까지 — 강원테크노파크 이사장 인사말</p>
+  <ul class="nums" id="nums"></ul>
+ </div>
+</section>
+
+<section class="sec biz" id="biz">
+ <div class="in">
+  <div class="sec-top"><h2>주요 사업 분야</h2><p>원장 인사말의 여섯 분야와 지금 열려 있는 공고 수입니다.</p></div>
+  <div class="biz-rows" id="bizrows"></div>
+ </div>
+</section>
+
+<section class="sec fac" id="fac">
+ <div class="in">
+  <div class="sec-top"><h2>입주 시설 15곳</h2><p>6개 시군에 입주 공간과 지원센터가 있습니다. 시설을 누르면 층별 구성이 열립니다.</p></div>
+  <div class="cities" id="cities" role="tablist" aria-label="시군"></div>
+  <div class="fac-rows" id="facrows"></div>
+ </div>
+</section>
+
+<section class="sec news" id="news">
+ <div class="in">
+  <div class="sec-top"><h2>강원TP 소식</h2><a class="sec-link" id="newsall" href="#" target="_blank" rel="noopener">언론보도 전체 보기</a></div>
+  <div class="news-grid" id="newsgrid"></div>
+ </div>
+</section>
+
+<section class="sec links" id="links">
+ <div class="in">
+  <div class="sec-top"><h2>바로가기</h2></div>
+  <div class="links-grid">
+   <div class="sys" id="sys"></div>
+   <div class="call">
+    <p class="call-k">대표전화</p>
+    <a class="call-n" href="tel:033-248-5600">033-248-5600</a>
+    <p class="call-a" id="addr"></p>
+   </div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer class="foot" id="foot">
+ <div class="in">
+  <img class="ft-logo" src="../../shared/img/logo-white.png" alt="강원테크노파크">
+  <div class="ft-map" id="ftmap"></div>
+  <div class="ft-bottom">
+   <p id="ftaddr"></p>
+   <p>대표전화 033-248-5600</p>
+   <p>© 강원테크노파크</p>
+  </div>
+ </div>
+</footer>
+
+<script src="../../shared/base.js"></script>
+<script src="../../shared/notices.js"></script>
+<script src="../../shared/gw-core.js"></script>
+<script src="../../shared/home-lists.js"></script>
+<script src="../../shared/facilities.js"></script>
+<script src="icons.js"></script>
+<script src="board-core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

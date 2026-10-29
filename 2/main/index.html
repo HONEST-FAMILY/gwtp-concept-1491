@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>강원테크노파크</title>
+<link rel="icon" href="../../shared/img/favicon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hd" id="hd">
+ <div class="bar">
+  <a class="logo" href="#top"><img src="../../shared/img/logo-navy.png" alt="강원테크노파크"></a>
+  <nav id="gnb" aria-label="주 메뉴"></nav>
+  <button class="menu" type="button" id="menuBtn" aria-controls="sheet" aria-expanded="false">메뉴</button>
+ </div>
+ <div class="mega" id="mega"><div class="cols" id="megaCols"></div></div>
+</header>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="전체 메뉴">
+ <div class="top"><img src="../../shared/img/logo-navy.png" alt="강원테크노파크"><button class="x" type="button" id="sheetX">닫기</button></div>
+ <div id="sheetBody"></div>
+</div>
+<main id="top">
+ <section class="hero w">
+  <h1>강원 여섯 시군,<br>기업이 일하는 열다섯 곳</h1>
+  <div class="lead">춘천, 홍천, 원주, 강릉, 태백, 삼척에 입주 공간과 지원센터 15곳이 있습니다.<br><a href="#places">입주 시설 보기</a></div>
+ </section>
+ <div class="street" aria-label="강원테크노파크 시설 15곳, 서쪽 춘천부터 동쪽 삼척까지"><div class="road"><div class="track" id="track"></div></div></div>
+ <div class="mini" id="mini" aria-hidden="true"></div>
+
+ <section class="sec paper" id="notices" aria-labelledby="nh">
+  <div class="w">
+   <div class="head">
+    <div><h2 id="nh">지금 접수 중인 공고</h2><p class="cnt" id="ncnt"></p></div>
+    <div class="filt" id="filt"></div>
+   </div>
+   <ol class="nl" id="nl"></ol>
+   <div class="boards">
+    <div><h3>게시판 새 글</h3><div class="tabs" role="tablist" id="tabs"></div></div>
+    <div><ul class="bl" id="bl" role="tabpanel"></ul><p class="bfoot"><a class="more" id="bmore" href="#" target="_blank" rel="noopener">게시판 전체 보기</a></p></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="sec" id="about" aria-labelledby="ah">
+  <div class="w">
+   <h2 class="big" id="ah">지역 산업의 거점, 강원테크노파크</h2>
+   <p class="sub">기술개발부터 사업화, 인재 양성, 생태계 조성까지 기업 성장의 전 주기를 밀착 지원하겠습니다.</p>
+   <ul class="nums" id="nums"></ul>
+  </div>
+ </section>
+
+ <section class="sec paper" id="biz" aria-labelledby="bh">
+  <div class="w">
+   <h2 id="bh">주요 사업</h2>
+   <p class="sub">반도체, 바이오, 디지털헬스, 수소, 모빌리티, AI. 분야마다 일하는 곳과 지금 열린 공고입니다.</p>
+   <ul class="bz" id="bz"></ul>
+  </div>
+ </section>
+
+ <section class="sec" id="places" aria-labelledby="ph">
+  <div class="w">
+   <div class="head">
+    <div><h2 id="ph">입주 시설 15곳</h2><p class="sub">시군을 고르면 그곳만, 건물을 누르면 층별 구성이 열립니다.</p></div>
+    <div class="cities" id="cities"></div>
+   </div>
+   <div id="rows"></div>
+  </div>
+ </section>
+
+ <section class="sec paper" id="news" aria-labelledby="wh">
+  <div class="w">
+   <div class="nhead"><h2 id="wh">강원테크노파크 소식</h2><a class="more" id="newsMore" href="#" target="_blank" rel="noopener">언론보도 전체 보기</a></div>
+   <div class="news" id="newsBox"></div>
+  </div>
+ </section>
+
+ <section class="sec" id="links" aria-labelledby="lh">
+  <div class="w">
+   <h2 id="lh">바로가기</h2>
+   <div class="sys" id="sys"></div>
+   <p class="tel"><span>대표전화</span><a id="tel" href="tel:0332485600">033-248-5600</a></p>
+  </div>
+ </section>
+</main>
+<footer class="ft">
+ <div class="w">
+  <div class="top">
+   <div><img src="../../shared/img/logo-white.png" alt="강원테크노파크"><p class="addr" id="addr"></p></div>
+   <div class="map" id="map"></div>
+  </div>
+  <p class="copy">© 강원테크노파크</p>
+ </div>
+</footer>
+<div class="dlg" id="dlg" role="dialog" aria-modal="true" aria-labelledby="dName">
+ <div class="box">
+  <div class="pic"><img id="dImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt=""></div>
+  <div>
+   <p class="ci" id="dCity"></p>
+   <h3 id="dName"></h3>
+   <dl id="dInfo"></dl>
+   <table id="dFloors"></table>
+   <button class="x" type="button" id="dX">닫기</button>
+  </div>
+ </div>
+</div>
+<script src="../../shared/base.js"></script>
+<script src="../../shared/notices.js"></script>
+<script src="../../shared/gw-core.js"></script>
+<script src="../../shared/home-lists.js"></script>
+<script src="../../shared/facilities.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
